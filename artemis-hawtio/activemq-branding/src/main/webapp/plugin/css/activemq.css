@@ -17,8 +17,61 @@
 
 /* fonts */
 
-@import url("../../../console/app/themes/fonts/Open-Sans/stylesheet.css");
-@import url("../../../console/app/themes/fonts/Droid-Sans-Mono/stylesheet.css");
+
+/* You can customise the styles of your application here. */
+@font-face {
+    font-family: 'PatternFlyIcons-webfont';
+    src: url('../../../console/fonts/PatternFlyIcons-webfont.eot');
+    url('../../../console/fonts/PatternFlyIcons-webfont.woff') format('woff'),
+    url('../../../console/fonts/PatternFlyIcons-webfont.ttf') format('truetype'),
+    url('../../../console/fonts/PatternFlyIcons-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+svg text {
+   font-family: PatternFlyIcons-webfont;
+}
+
+.pf-topology-svg g.ThisBroker circle {
+   stroke: #05ad27;
+   stroke-width: 2;
+   fill: #07e333;
+}
+
+.pf-topology-svg g.MasterBroker circle {
+   stroke: #05ad27;
+   stroke-width: 2;
+   fill: #07e333;
+}
+
+.pf-topology-svg g.SlaveBroker circle {
+   stroke: #05ad27;
+   stroke-width: 2;
+   fill: #057dad;
+}
+
+.pf-topology-svg g.Address circle {
+   stroke: #3b0575;
+   stroke-width: 2;
+   fill: #3b0575;
+}
+
+.pf-topology-svg g.Queue circle {
+   stroke: #7505ed;
+   stroke-width: 2;
+   fill: #7505ed;
+}
+
+.pf-topology-svg g.ThisBroker text.glyph {
+   font-size: 18px;
+}
+
+/* Change the background image for Login page and About modal */
+.pf-c-login, .pf-c-about-modal-box__hero {
+  background-image: url("/activemq-branding/plugin/img/login-screen-background.png");
+  background-size: cover;
+}
+
 
 * {
   font-family: OpenSans;

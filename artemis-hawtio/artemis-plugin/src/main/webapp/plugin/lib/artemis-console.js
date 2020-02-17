@@ -15,7 +15,7 @@
  limitations under the License.
  Architecture
  */
-function ArtemisConsole() {
+function Artemis() {
 
    this.getServerAttributes = function (jolokia, mBean) {
       var req1 = { type: "read", mbean: mBean};

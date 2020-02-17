@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var ARTEMIS;
-(function (ARTEMIS) {
-    ARTEMIS.jmsHeaderSchema = {
+var Artemis;
+(function (Artemis) {
+    Artemis.jmsHeaderSchema = {
         definitions: {
             headers: {
                 properties: {
@@ -58,5 +58,5 @@ var ARTEMIS;
             }
         }
     };
-})(ARTEMIS || (ARTEMIS = {}));
+})(Artemis || (Artemis = {}));
 //# sourceMappingURL=jmsHeaderSchema.js.map

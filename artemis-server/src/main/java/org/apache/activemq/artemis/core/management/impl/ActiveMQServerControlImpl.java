@@ -734,7 +734,7 @@ public class ActiveMQServerControlImpl extends AbstractControl implements Active
    }
 
    @Override
-   public int getAddressMemoryUsagePercentage() {
+   public int  getAddressMemoryUsagePercentage() {
       if (AuditLogger.isEnabled()) {
          AuditLogger.getAddressMemoryUsagePercentage(this.server);
       }

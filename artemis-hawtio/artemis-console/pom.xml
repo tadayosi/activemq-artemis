@@ -45,7 +45,7 @@
 
     <dependency>
       <groupId>io.hawt</groupId>
-      <artifactId>hawtio-web</artifactId>
+      <artifactId>hawtio-war</artifactId>
       <version>${hawtio.version}</version>
       <!--
         NOTE this WAR dependency type which enables this WAR to
@@ -61,12 +61,12 @@
       <version>${hawtio.version}</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
+    <!--<dependency>
       <groupId>io.hawt</groupId>
       <artifactId>hawtio-git</artifactId>
       <version>${hawtio.version}</version>
       <scope>provided</scope>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
@@ -105,7 +105,7 @@
           <overlays>
             <overlay>
               <groupId>io.hawt</groupId>
-              <artifactId>hawtio-web</artifactId>
+              <artifactId>hawtio-war</artifactId>
               <excludes>
                 <exclude>bower_components/bootstrap/docs/build/**/*</exclude>
                 <exclude>bower_components/bootstrap/docs/examples/**/*</exclude>
