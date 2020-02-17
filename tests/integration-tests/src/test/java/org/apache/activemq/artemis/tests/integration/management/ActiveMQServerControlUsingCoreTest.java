@@ -784,6 +784,11 @@ public class ActiveMQServerControlUsingCoreTest extends ActiveMQServerControlTes
          }
 
          @Override
+         public String getHAPolicy() {
+            return null;
+         }
+
+         @Override
          public boolean freezeReplication() {
 
             return false;
@@ -1286,6 +1291,11 @@ public class ActiveMQServerControlUsingCoreTest extends ActiveMQServerControlTes
          @Override
          public String[] getDivertNames() {
             return (String[]) proxy.retrieveAttributeValue("divertNames", String.class);
+         }
+
+         @Override
+         public String[] listDivertNames() {
+            return new String[0];
          }
 
          @Override

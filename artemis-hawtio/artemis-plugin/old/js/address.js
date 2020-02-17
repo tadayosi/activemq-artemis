@@ -98,22 +98,6 @@ var ARTEMIS = (function(ARTEMIS) {
                 }
             }
         };
-        $scope.name = function () {
-            var selection = workspace.selection;
-            if (selection) {
-                return ARTEMISService.artemisConsole.ownUnescape(selection.title);
-            }
-            return null;
-        };
-
-        function getBrokerMBean(jolokia) {
-            var mbean = null;
-            var selection = workspace.selection;
-            var folderNames = selection.folderNames;
-            mbean = "" + folderNames[0] + ":broker=" + folderNames[1];
-            ARTEMIS.log.info("broker=" + mbean);
-            return mbean;
-        }
     };
 
     return ARTEMIS;

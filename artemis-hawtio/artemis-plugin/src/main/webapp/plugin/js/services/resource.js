@@ -16,24 +16,27 @@
  */
 var Artemis;
 (function (Artemis) {
-    function artemisJmxDomain() {
-        return localStorage['artemisJmxDomain'] || "org.apache.activemq.artemis";
-    }
-    Artemis.artemisJmxDomain = artemisJmxDomain;;
 
-    function ownUnescape(name) {
-        //simple return unescape(name); does not work for this :(
-        return name.replace(/\\\\/g, "\\").replace(/\\\*/g, "*").replace(/\\\?/g, "?");
-    };
-    Artemis.ownUnescape = ownUnescape;
-
-    function getBrokerMBean(workspace, jolokia) {
-        var mbean = null;
-        var selection = workspace.selection;
-        var folderNames = selection.folderNames;
-        mbean = "" + folderNames[0] + ":broker=\"" + folderNames[1] + "\"";
-        return mbean;
-    }
-    Artemis.getBrokerMBean = getBrokerMBean;
+    Artemis._module.factory('artemisMessage', function () {
+        return { 'message': null };
+    })
+    .factory('artemisConnection', function () {
+        return { 'connection': null };
+    })
+    .factory('artemisSession', function () {
+        return { 'session': null };
+    })
+    .factory('artemisConsumer', function () {
+        return { 'consumer': null };
+    })
+    .factory('artemisProducer', function () {
+        return { 'producer': null };
+    })
+    .factory('artemisQueue', function () {
+        return { 'queue': null };
+    })
+    .factory('artemisAddress', function () {
+        return { 'address': null };
+    });
 
 })(Artemis || (Artemis = {}));

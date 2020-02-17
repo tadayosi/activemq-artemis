@@ -460,6 +460,12 @@ public interface ActiveMQServerControl {
     */
    @Attribute(desc = "Memory used by the disk store")
    int getDiskStoreUsagePercentage();
+   /**
+    * Returns the storage used by disk store
+    */
+
+   @Attribute(desc = "Returns the HA Policy of this broker as a String")
+   String getHAPolicy();
 
    // Operations ----------------------------------------------------
    @Operation(desc = "Isolate the broker", impact = MBeanOperationInfo.ACTION)

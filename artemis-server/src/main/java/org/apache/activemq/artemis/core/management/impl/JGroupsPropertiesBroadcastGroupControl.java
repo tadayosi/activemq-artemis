@@ -14,30 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.activemq.artemis.core.config;
+package org.apache.activemq.artemis.core.management.impl;
 
-import java.io.Serializable;
+import org.apache.activemq.artemis.api.core.management.Attribute;
+import org.apache.activemq.artemis.api.core.management.JGroupsChannelBroadcastGroupControl;
 
-public interface HAPolicyConfiguration extends Serializable {
+public interface JGroupsPropertiesBroadcastGroupControl extends JGroupsChannelBroadcastGroupControl {
 
-   enum TYPE {
-      LIVE_ONLY("Live Only"),
-      REPLICATED("Replicated"),
-      REPLICA("Replica"),
-      SHARED_STORE_MASTER("Shared Store Master"),
-      SHARED_STORE_SLAVE("Shared Store Slave"),
-      COLOCATED("Colocated");
-
-      private String name;
-
-      TYPE(String name) {
-         this.name = name;
-      }
-
-      public String getName() {
-         return name;
-      }
-   }
-
-   TYPE getType();
+   /**
+    * Returns the JGroups properties
+    */
+   @Attribute(desc = "Returns the JGroups properties")
+   String getProperties();
 }

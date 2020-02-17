@@ -62,6 +62,10 @@
     <schema-outdir>${basedir}/src/main/webapp/lib</schema-outdir>
     <appjs-outfile>${webapp-outdir}/app/app.js</appjs-outfile>
 
+<!--
+    <angular.version>1.7.9</angular.version>
+-->
+
   </properties>
 
   <dependencies>
@@ -73,6 +77,12 @@
       <groupId>io.hawt</groupId>
       <artifactId>hawtio-plugin-mbean</artifactId>
     </dependency>
+
+    <!--<dependency>
+      <groupId>org.webjars.bower</groupId>
+      <artifactId>angular</artifactId>
+      <version>${angular.version}</version>
+    </dependency>-->
 
     <!-- servlet API is provided by the container -->
     <dependency>
@@ -165,6 +175,37 @@
         </executions>
       </plugin>
 
+      <!--      <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-dependency-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>unpack-jar</id>
+                  <phase>generate-resources</phase>
+                  <goals>
+                    <goal>unpack</goal>
+                  </goals>
+                  <configuration>
+                    <artifactItems>
+                      <artifactItem>
+                        <groupId>org.webjars.bower</groupId>
+                        <artifactId>angular</artifactId>
+                        <version>${angular.version}</version>
+                        <type>jar</type>
+                        <destFileName>angular-dependency</destFileName>
+                        <includes>
+                          META-INF/resources/webjars/angular/${angular.version}/*
+                        </includes>
+                        <outputDirectory>
+                          ${project.build.directory}/angular
+                        </outputDirectory>
+                      </artifactItem>
+                    </artifactItems>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>-->
+
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>${maven-resources-plugin-version}</version>
@@ -255,6 +296,13 @@
                 <exclude>log4j.properties</exclude>
               </excludes>
             </resource>
+           <!-- <resource>
+              <directory>${project.build.directory}/angular/META-INF/resources/webjars/angular/${angular.version}</directory>
+              <targetPath>plugin/lib</targetPath>
+              <includes>
+                <include>**/*.js</include>
+              </includes>
+            </resource>-->
           </webResources>
         </configuration>
       </plugin>
