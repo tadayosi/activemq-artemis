@@ -15,72 +15,74 @@
  limitations under the License.
  Architecture
  */
-function Artemis() {
+var Artemis = (function (Artemis) {
 
-   this.getServerAttributes = function (jolokia, mBean) {
+   Artemis.getServerAttributes = function (jolokia, mBean) {
       var req1 = { type: "read", mbean: mBean};
       return jolokia.request(req1, {method: "post"});
    };
 
-   this.createAddress = function (mbean, jolokia, name, routingType,  method) {
+   Artemis.createAddress = function (mbean, jolokia, name, routingType,  method) {
       jolokia.execute(mbean, "createAddress(java.lang.String,java.lang.String)", name, routingType,  method);
    };
 
-   this.deleteAddress = function (mbean, jolokia, name, method) {
+   Artemis.deleteAddress = function (mbean, jolokia, name, method) {
       jolokia.execute(mbean, "deleteAddress(java.lang.String)", name,  method);
    };
 
-   this.createQueue = function (mbean, jolokia, address, routingType, name, durable, filter, maxConsumers, purgeWhenNoConsumers, method) {
+   Artemis.createQueue = function (mbean, jolokia, address, routingType, name, durable, filter, maxConsumers, purgeWhenNoConsumers, method) {
       jolokia.execute(mbean, "createQueue(java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,int,boolean,boolean)", address, routingType, name, filter, durable, maxConsumers, purgeWhenNoConsumers, true, method);
    };
 
-   this.deleteQueue = function (mbean, jolokia, name, method) {
+   Artemis.deleteQueue = function (mbean, jolokia, name, method) {
       jolokia.execute(mbean, "destroyQueue(java.lang.String)", name,  method);
    };
 
-   this.purgeQueue = function (mbean, jolokia, method) {
+   Artemis.purgeQueue = function (mbean, jolokia, method) {
 	  jolokia.execute(mbean, "removeAllMessages()", method);
    };
 
-   this.browse = function (mbean, jolokia, method) {
+   Artemis.browse = function (mbean, jolokia, method) {
       jolokia.request({ type: 'exec', mbean: mbean, operation: 'browse()' }, method);
    };
 
-   this.deleteMessage = function (mbean, jolokia, id,  method) {
+   Artemis.deleteMessage = function (mbean, jolokia, id,  method) {
       ARTEMIS.log.info("executing on " + mbean);
       jolokia.execute(mbean, "removeMessage(long)", id, method);
    };
 
-   this.moveMessage = function (mbean, jolokia, id, queueName,  method) {
+   Artemis.moveMessage = function (mbean, jolokia, id, queueName,  method) {
       jolokia.execute(mbean, "moveMessage(long,java.lang.String)", id, queueName, method);
    };
 
-   this.retryMessage = function (mbean, jolokia, id, method) {
+   Artemis.retryMessage = function (mbean, jolokia, id, method) {
       jolokia.execute(mbean, "retryMessage(long)", id,  method);
    };
 
-   this.sendMessage = function (mbean, jolokia, headers, type, body, durable, user, pwd, method) {
+   Artemis.sendMessage = function (mbean, jolokia, headers, type, body, durable, user, pwd, method) {
       jolokia.execute(mbean, "sendMessage(java.util.Map, int, java.lang.String, boolean, java.lang.String, java.lang.String)", headers, type, body, durable, user, pwd,  method);
    };
 
-   this.getConsumers = function (mbean, jolokia, method) {
+   Artemis.getConsumers = function (mbean, jolokia, method) {
       jolokia.request({ type: 'exec', mbean: mbean, operation: 'listAllConsumersAsJSON()' }, method);
    };
 
-   this.getRemoteBrokers = function (mbean, jolokia, method) {
+   Artemis.getRemoteBrokers = function (mbean, jolokia, method) {
       jolokia.request({ type: 'exec', mbean: mbean, operation: 'listNetworkTopology()' }, method);
    };
 
-   this.ownUnescape = function (name) {
+   Artemis.ownUnescape = function (name) {
       //simple return unescape(name); does not work for this :(
       return name.replace(/\\\\/g, "\\").replace(/\\\*/g, "*").replace(/\\\?/g, "?");
    };
 
-   this.isBackup = function (jolokia, mBean) {
+   Artemis.isBackup = function (jolokia, mBean) {
       var req1 = { type: "read", mbean: mBean, attribute: "Backup"};
       return jolokia.request(req1, {method: "get"});
    };
-}
+
+   return Artemis;
+})(Artemis || {});
 
 function getServerAttributes() {
    var console = new ArtemisConsole();
