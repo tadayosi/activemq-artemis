@@ -1,0 +1,19 @@
+{
+  "name": "@tadayosi/artemis-plugin",
+  "version": "0.1.0",
+  "description": "Artemis plugin module for the Hawtio web console",
+  "main": "src/main/webapp/plugin/js/artemisPlugin.js",
+  "scripts": {
+    "prebuild": "rm -rf dist/",
+    "build": "parcel build --no-source-maps -o artemis-plugin.js src/main/webapp/**/*.js"
+  },
+  "devDependencies": {
+    "parcel": "^1.12.4",
+    "parcel-plugin-concat": "^0.1.2"
+  },
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}
