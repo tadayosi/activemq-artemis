@@ -200,19 +200,6 @@ var Artemis;
             return workspace.hasDomainAndProperties(artemisJmxDomain, {'subcomponent': 'queues'}) && hasQueueinvokeRights(workspace, "browse") && hasQueueinvokeRights(workspace, "countMessages");
         }
 
-        /*
-        function hasInvokeRights(jolokia, mbean, operation) {
-            var response = jolokia.request({
-                type: 'exec',
-                mbean: 'hawtio:type=security,area=jmx,name=ArtemisJMXSecurity',
-                operation: 'canInvoke(java.lang.String, java.lang.String)',
-                arguments: [mbean, operation] },
-                Core.onSuccess(null));
-
-            Artemis.log.debug(operation + "=" + response.value);
-            return response.value;
-        }
-        */
         function hasQueueinvokeRights(workspace, operation) {
             var selection = workspace.selection;
             if (!selection)
