@@ -124,10 +124,10 @@ var Artemis;
             this.$location.path(tab.path);
         };
 
-        ctrl.showCreateAddress = hasInvokeRights(jolokia, Artemis.getBrokerMBean(workspace, jolokia), 'createAddress');
-        ctrl.showDeleteAddress = hasInvokeRights(jolokia, Artemis.getBrokerMBean(workspace, jolokia), 'deleteAddress');
-        ctrl.showCreateQueue = hasInvokeRights(jolokia, Artemis.getBrokerMBean(workspace, jolokia), 'createQueue');
-        ctrl.showDeleteQueue = hasInvokeRights(jolokia, Artemis.getBrokerMBean(workspace, jolokia), 'destroyQueue');
+        ctrl.showCreateAddress = workspace.hasInvokeRights({ mbean: Artemis.getBrokerMBean(workspace, jolokia) }, 'createAddress');
+        ctrl.showDeleteAddress = workspace.hasInvokeRights({ mbean: Artemis.getBrokerMBean(workspace, jolokia) }, 'deleteAddress');
+        ctrl.showCreateQueue = workspace.hasInvokeRights({ mbean: Artemis.getBrokerMBean(workspace, jolokia) }, 'createQueue');
+        ctrl.showDeleteQueue = workspace.hasInvokeRights({ mbean: Artemis.getBrokerMBean(workspace, jolokia) }, 'destroyQueue');
 
         function getTabs() {
 
@@ -200,6 +200,7 @@ var Artemis;
             return workspace.hasDomainAndProperties(artemisJmxDomain, {'subcomponent': 'queues'}) && hasQueueinvokeRights(workspace, "browse") && hasQueueinvokeRights(workspace, "countMessages");
         }
 
+        /*
         function hasInvokeRights(jolokia, mbean, operation) {
             var response = jolokia.request({
                 type: 'exec',
@@ -211,6 +212,7 @@ var Artemis;
             Artemis.log.debug(operation + "=" + response.value);
             return response.value;
         }
+        */
         function hasQueueinvokeRights(workspace, operation) {
             var selection = workspace.selection;
             if (!selection)
@@ -218,7 +220,7 @@ var Artemis;
             var mbean = selection.objectName;
             if (!mbean)
                 return false;
-            return hasInvokeRights(jolokia, mbean, operation)
+            return workspace.hasInvokeRights(workspace.selection, operation);
         }
     }
     ArtemisNavigationController.$inject = ['$scope', '$location', 'workspace', 'localStorage', 'jolokia']
